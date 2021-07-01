@@ -8,44 +8,122 @@ namespace DecBinHexConverter
 {
     public static class NumberConverter
     {
-        public static string DecimalToBinary(int decimalNum)
+        public static string DecimalToBinary(string decimalNum)
         {
-            string result = Convert.ToString(decimalNum, 2);
+            bool isNegative = false;
             
+            if (decimalNum.StartsWith("-"))
+            {
+                decimalNum = decimalNum.Remove(0,1);
+                isNegative = true;
+            }
+            
+            string result = Convert.ToString(Convert.ToInt32(decimalNum, 10), 2);
+
+            if (isNegative)
+            {
+                result = result.Insert(0, "-");
+            }
+
             return result;
         }
 
-        public static string DecimalToHexadecimal(int decimalNum)
+        public static string DecimalToHexadecimal(string decimalNum)
         {
-            string result = Convert.ToString(decimalNum, 16).ToUpper();
+            bool isNegative = false;
+
+            if (decimalNum.StartsWith("-"))
+            {
+                decimalNum = decimalNum.Remove(0, 1);
+                isNegative = true;
+            }
+
+            string result = Convert.ToString(Convert.ToInt32(decimalNum, 10), 16).ToUpper();
+
+            if (isNegative)
+            {
+                result = result.Insert(0, "-");
+            }
 
             return result;
         }
 
         public static string BinaryToDecimal(string binaryNum)
         {
+            bool isNegative = false;
+
+            if (binaryNum.StartsWith("-"))
+            {
+                binaryNum = binaryNum.Remove(0, 1);
+                isNegative = true;
+            }
+
             string result = Convert.ToString(Convert.ToInt32(binaryNum, 2), 10);
+
+            if (isNegative)
+            {
+                result = result.Insert(0, "-");
+            }
 
             return result;
         }
 
         public static string BinaryToHexadecimal(string binaryNum)
         {
+            bool isNegative = false;
+
+            if (binaryNum.StartsWith("-"))
+            {
+                binaryNum = binaryNum.Remove(0, 1);
+                isNegative = true;
+            }
+
             string result = Convert.ToString(Convert.ToInt32(binaryNum, 2), 16).ToUpper();
 
-            return result;
-        }
-
-        public static string HexadecimalToDecimal(string binaryNum)
-        {
-            string result = Convert.ToString(Convert.ToInt32(binaryNum, 16), 10);
+            if (isNegative)
+            {
+                result = result.Insert(0, "-");
+            }
 
             return result;
         }
 
-        public static string HexadecimalToBinary(string binaryNum)
+        public static string HexadecimalToDecimal(string hexNum)
         {
-            string result = Convert.ToString(Convert.ToInt32(binaryNum, 16), 2);
+            bool isNegative = false;
+
+            if (hexNum.StartsWith("-"))
+            {
+                hexNum = hexNum.Remove(0, 1);
+                isNegative = true;
+            }
+
+            string result = Convert.ToString(Convert.ToInt32(hexNum, 16), 10);
+
+            if (isNegative)
+            {
+                result = result.Insert(0, "-");
+            }
+
+            return result;
+        }
+
+        public static string HexadecimalToBinary(string hexNum)
+        {
+            bool isNegative = false;
+
+            if (hexNum.StartsWith("-"))
+            {
+                hexNum = hexNum.Remove(0, 1);
+                isNegative = true;
+            }
+
+            string result = Convert.ToString(Convert.ToInt32(hexNum, 16), 2);
+
+            if (isNegative)
+            {
+                result = result.Insert(0, "-");
+            }
 
             return result;
         }
